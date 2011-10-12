@@ -2,6 +2,7 @@
  Copyright (C) 2005 by Ana Lucia Bazzan (bazzan@inf.ufrgs.br)
  Bruno Castro da Silva (bcs@inf.ufrgs.br)
  Diogo Becker de Brum (dbrum@inf.ufrgs.br)
+ Maicon de Brito do Amarante (mbamarante@inf.ufrgs.br)
  http://www.inf.ufrgs.br/~mas/traffic/siscot
 
  This file is part of Itsumo.
