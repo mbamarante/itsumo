@@ -1,0 +1,7 @@
+
+# start simulations using nohup
+
+nohup ./itsumo.noreplan ../../input/arterials-config-40k-noreplan.xml > ../../output/arterial-noreplan-40k.log 2> ../../output/arterial-noreplan-40k.error &
+
+
+# organize multiple simulations

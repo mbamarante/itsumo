@@ -1,0 +1,40 @@
+<drivers>
+ <driver>
+  <name>fc</name>
+  <nick>Floating Car</nick>
+  <description>Floating Car: driver with the possibility to define routes.</description>
+  <option>insert_timestep</option>
+ </driver>
+ <driver>
+  <name>nasch</name>
+  <nick>Standard</nick>
+  <description>Standard: noise driver.</description></driver>
+ <driver>
+  <name>braess</name>
+  <nick>Braess</nick>
+  <description>Braess Driver.</description>
+  <option>deceleration</option>
+  <option>learn_delta</option>
+  <option>learn_prob</option>
+  <option>paradox</option>
+  <option>prob_oqpd</option>
+  <option>prob_opd</option>
+  <option>prob_oqd</option>
+  <option>fc_oqpd</option>
+  <option>fc_opd</option>
+  <option>fc_oqd</option>
+ </driver>
+ <driver>
+  <name>irc</name>
+  <nick>IRC</nick>
+  <description>Iterated route choice Driver.</description>
+  <option>source_laneset</option>
+  <option>sink_laneset</option>
+  <option>route0_begin</option>
+  <option>route1_begin</option>
+  <option>init_heuristic</option>
+  <option>learn_prob</option>
+  <option>hist_size</option>
+ </driver>
+</drivers>
+

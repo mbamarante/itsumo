@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./itsumo $1 &
+./start_agents &

@@ -1,0 +1,411 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# $Id: braess,v 1.4 2006-11-27 23:13:35 itsumo Exp $
+
+"""
+P = passo
+R = rodada
+-Densidades (P)
+-Tempo medio independente de rota (P)
+-Probabilidade da OQPD (P)
+-Numero de motoristas em cada rota (R)
+-Log dos 3 FC separados em arquivos (R)
+
+
+Arquivos de entrada:
+	arq_s	: informacoes da topologia (densidades)
+	arq_e	: informacoes dos motoristas
+
+"""
+
+import re
+import sys
+import os
+import string
+
+
+def mini_grep(lin_temp,pat):
+	lin =[]
+	for i in lin_temp:
+		if i.find(pat) != -1:  # se encontrou
+			lin.append(i)
+	return lin
+
+def densidades(fin,fout):
+	# Extrai as densidades de cada rota 
+	fpin = open(fin,'r')
+	data = fpin.readlines()
+	fpin.close()
+
+	fpout = open(fout,'w')
+	# Escreve cabeçalho
+	fpout.write("#Passo  Ent.    OP      OQ      PD      QD      QP\n")
+
+	# Elimina as primeiras 23 linhas
+	for i in range(23,len(data)):	
+		fpout.write(data[i])
+	fpout.close()
+	
+def tempo_medio_iteracao(fin,fout):
+	# Extrai o tempo medio
+
+	fpin = open(fin,'r')
+	lin_temp = fpin.readlines()
+	fpin.close()
+
+	fpout = open(fout,'w')
+	fpout.write('#Passo	Tempo\n')
+
+	lin = mini_grep(lin_temp,'TempoRodada')
+
+	def cmp(a,b):
+		# comparacao para o sort  
+		if int(a.split(':')[1]) < int(b.split(':')[1]):
+			return -1
+		else:
+			if int(a.split(':')[1]) > int(b.split(':')[1]):
+				return 1
+        		else:
+            			return 0
+	lin.sort(cmp)
+
+	iteracao_atual = int(lin[0].split(':')[1])
+	conta = media = 0 
+
+	for i in lin:
+		iteracao_anterior = iteracao_atual
+		iteracao_atual = int(i.split(':')[1])
+		if iteracao_atual == iteracao_anterior:
+			conta +=1
+			media += int(i.split(':')[5])
+		else:
+			if (float(media)/float(conta))> 0:
+				fpout.write(str(iteracao_anterior)+ "\t%.3f\n" % (float(media)/float(conta)))
+			        conta = 1
+			        media = int(i.split(':')[5])
+    
+	if (float(media)/float(conta))> 0:
+		fpout.write(str(iteracao_anterior) + "\t%.3f\n" % (float(media)/float(conta)))
+
+	fpout.close()
+	
+def probabilidades(fin,fout):
+	# Extrai as probabilidades
+	fpin = open(fin, 'r')
+	lin_t = fpin.readlines()
+	fpin.close()
+	
+	lin = mini_grep(lin_t,'Probabilidade')
+	
+	fpout = open(fout,'w')
+	fpout.write("#Rodada\tPROB OQPD\n")
+	
+	def cmp(a,b):
+		# comparacao para o sort  
+		if int(a.split(':')[1]) < int(b.split(':')[1]):
+			return -1
+		else:
+			if int(a.split(':')[1]) > int(b.split(':')[1]):
+				return 1
+        		else:
+            			return 0
+	lin.sort(cmp)
+
+	iteracao_atual = int(lin[0].split(':')[1])
+	conta = media = 0 
+
+	for i in lin:
+		iteracao_anterior = iteracao_atual
+		iteracao_atual = int(i.split(':')[1])
+		if iteracao_atual == iteracao_anterior:
+			conta +=1
+			media += float(i.split(':')[5])
+		else:
+			if (float(media)/float(conta)) >= 0:
+				fpout.write(str(iteracao_anterior)+ "\t%.4f\n" % (float(media)/float(conta)))
+			        conta = 1
+			        media = float(i.split(':')[5])
+    
+	if (float(media)/float(conta)) >= 0:
+		fpout.write(str(iteracao_anterior) + "\t%.4f\n" % (float(media)/float(conta)))
+	fpout.close()
+
+def tempo_rota(fin,fout):
+	
+	fpin = open(fin,'r')
+	lin_t = fpin.readlines()
+	fpin.close()
+	lin = mini_grep(lin_t,'TempoRodada')
+	fpout = open(fout,'w')
+	fpout.write("#Passo\tOPD\tOQD\tOQPD\n")
+	def cmp(a,b):
+		# comparacao para o sort  
+		if int(a.split(':')[1]) < int(b.split(':')[1]):
+			return -1
+		else:
+			if int(a.split(':')[1]) > int(b.split(':')[1]):
+				return 1
+        		else:
+            			return 0
+	lin.sort(cmp)
+
+	# Numero de motoristas por rota a cada rodada 
+	c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+	a = 1 # step 
+
+	while a:
+		a = int(lin[0].split(':')[1])
+		m = a
+		c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+		while m == a:
+			l = lin[0]
+			x = int(l.split(':')[3])
+			val = int(l.split(":")[5])
+			if x == 0: 
+				t_opd += val
+				c_opd +=1	
+			elif x == 1: 
+				t_oqd += val
+				c_oqd +=1
+			elif x == 2: 
+				t_oqpd += val 
+				c_oqpd +=1
+			else:
+				print "ERRO tempo rota"
+				sys.exit(0)	
+			lin.remove(l)
+			
+			m = int(l.split(':')[1]) 
+			if len(lin) == 0:
+				m = -1
+				
+		fpout.write(str(a) + "\t")
+		if c_opd: 
+			fpout.write(str(t_opd/c_opd) + "\t")
+		else:
+			fpout.write(str("0")+"\t")
+		if c_oqd: 
+			fpout.write(str(t_oqd/c_oqd) + "\t")
+		else:
+			fpout.write(str("0")+"\t")
+		if c_oqpd: 
+			fpout.write(str(t_oqpd/c_oqpd) + "\t")
+		else:
+			fpout.write(str("0")+"\t")
+		fpout.write("\n")
+		
+		if len(lin) == 0: a=0 
+	fpout.close()
+
+def tempo_rota_rodada(fin,fout):
+	
+	fpin = open(fin,'r')
+	lin_t = fpin.readlines()
+	fpin.close()
+	lin = mini_grep(lin_t,'TempoRodada')
+	fpout = open(fout,'w')
+	fpout.write("#Rodada\tOPD\tOQD\tOQPD\n")
+	def cmp(a,b):
+		# comparacao para o sort  
+		if int(a.split(':')[2]) < int(b.split(':')[2]):
+			return -1
+		else:
+			if int(a.split(':')[2]) > int(b.split(':')[2]):
+				return 1
+        		else:
+            			return 0
+	lin.sort(cmp)
+	
+	# Numero de motoristas por rota a cada rodada 
+	c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+	a = 1 # Rodada 
+
+	while a:
+		a = int(lin[0].split(':')[2])
+		m = a
+		l = lin[0]
+		c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+		while m == a:
+			x = int(l.split(':')[3])
+			val = int(l.split(":")[5])
+			if x == 0: 
+				t_opd += val
+				c_opd +=1	
+			elif x == 1: 
+				t_oqd += val
+				c_oqd +=1
+			elif x == 2: 
+				t_oqpd += val 
+				c_oqpd +=1
+			else:
+				print "ERRO tempo_rota_rodada"
+				sys.exit(0)	
+			lin.remove(l)
+				
+			if len(lin) == 0:
+				m = -1
+			else:
+				l = lin[0]
+				m = int(l.split(':')[2]) 
+
+				
+		fpout.write(str(a) + "\t")
+		if c_opd: 
+			fpout.write(str(t_opd/c_opd) + "\t")
+		else:
+			fpout.write(str("0")+"\t")
+		if c_oqd: 
+			fpout.write(str(t_oqd/c_oqd) + "\t")
+		else:
+			fpout.write(str("0")+"\t")
+		if c_oqpd: 
+			fpout.write(str(t_oqpd/c_oqpd) + "\t")
+		else:
+			fpout.write(str("0")+"\t")
+		fpout.write("\n")
+		if len(lin) == 0: a=0 
+	fpout.close()
+
+def tempo_medio_rodada(fin,fout):
+	
+	fpin = open(fin,'r')
+	lin_t = fpin.readlines()
+	fpin.close()
+	lin = mini_grep(lin_t,'TempoRodada')
+	fpout = open(fout,'w')
+	fpout.write("#Rodada\tOPD\tOQD\tOQPD\n")
+	def cmp(a,b):
+		# comparacao para o sort  
+		if int(a.split(':')[2]) < int(b.split(':')[2]):
+			return -1
+		else:
+			if int(a.split(':')[2]) > int(b.split(':')[2]):
+				return 1
+        		else:
+            			return 0
+	lin.sort(cmp)
+	
+	# Numero de motoristas por rota a cada rodada 
+	c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+	a = 1 # Rodada 
+
+	while a:
+		a = int(lin[0].split(':')[2])
+		m = a
+		l = lin[0]
+		c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+		while m == a:
+			x = int(l.split(':')[3])
+			val = int(l.split(":")[5])
+			if x == 0: 
+				t_opd += val
+				c_opd +=1	
+			elif x == 1: 
+				t_oqd += val
+				c_oqd +=1
+			elif x == 2: 
+				t_oqpd += val 
+				c_oqpd +=1
+			else:
+				print "ERRO tempo_medio_rodada"
+				sys.exit(0)	
+			lin.remove(l)
+				
+			if len(lin) == 0:
+				m = -1
+			else:
+				l = lin[0]
+				m = int(l.split(':')[2]) 
+
+				
+		fpout.write(str(a) + "\t")
+		if (c_opd + c_oqd + c_oqpd )>0:
+			fpout.write(str((t_opd +t_oqd +t_oqpd)/(c_opd + c_oqd + c_oqpd)) + "\t")
+		else:
+			fpout.write(str("0")+"\t")
+		fpout.write("\n")
+		if len(lin) == 0: a=0 
+	fpout.close()
+
+def motoristas_por_rota(fin,fout):
+	
+	fpin = open(fin,'r')
+	lin_t = fpin.readlines()
+	fpin.close()
+	lin = mini_grep(lin_t,'TempoRodada')
+	fpout = open(fout,'w')
+	fpout.write("#Rodada\tOPD\tOQD\tOQPD\n")
+	def cmp(a,b):
+		# comparacao para o sort  
+		if int(a.split(':')[2]) < int(b.split(':')[2]):
+			return -1
+		else:
+			if int(a.split(':')[2]) > int(b.split(':')[2]):
+				return 1
+        		else:
+            			return 0
+	lin.sort(cmp)
+
+	# Numero de motoristas por rota a cada rodada 
+	c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+	a = 1 # Rodada 
+
+	while a:
+		a = int(lin[0].split(':')[2])
+		m = a
+		c_opd = c_oqd = c_oqpd = t_opd = t_oqd = t_oqpd = 0
+		while m == a:
+			l = lin[0]
+			x = int(l.split(':')[3])
+			val = int(l.split(":")[5])
+			if x == 0: 
+				t_opd += val
+				c_opd +=1	
+			elif x == 1: 
+				t_oqd += val
+				c_oqd +=1
+			elif x == 2: 
+				t_oqpd += val 
+				c_oqpd +=1
+			else:
+				print "ERRO motoristas_por_rota", x
+				sys.exit(0)	
+			lin.remove(l)
+			
+			m = int(l.split(':')[2]) 
+			if len(lin) == 0:
+				m = -1
+				
+		# numero de motoristas em cada rota
+		fpout.write(str(a) + "\t" + str(c_opd) + "\t" + str(c_oqd) + "\t" + str(c_oqpd) + "\n")
+		if len(lin) == 0: a=0 
+	fpout.close()
+
+
+"""
+def floating_cars(fin,fout1,fout2,fout3):
+	fpin = open(fin,'r')
+	lin = fpin.readlines()
+	fpin.close()
+	fpout = open(fout1,'w')	
+## INACABADO
+	fout.write("#Passo\tPosicao\tLink\tVelocidade\n") 
+	for l in lin:
+
+		if l.find('FC140'):
+			fout.write()
+		if l.find('FC440'):
+			
+		if l.find('FC740'):
+"""
+
+def main():
+	densidades('s','densidades')
+	probabilidades('e','probabilidades')
+	motoristas_por_rota('e','numero_de_motoristas')
+	tempo_rota_rodada('e','tempo_rota_rodada')
+	tempo_medio_iteracao('e','tempo_medio_iteracao')	
+	tempo_medio_rodada('e','tempo_medio_rodada')
+	tempo_rota('e','tempo_rota')
+###  
+main()

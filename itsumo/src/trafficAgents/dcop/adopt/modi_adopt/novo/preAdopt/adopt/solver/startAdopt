@@ -1,0 +1,10 @@
+#!/bin/sh
+ 
+# usage: startAdopt <algorithm> <problem-type> <input-file>
+# e.g. % startAdopt adopt maxcsp-tree MaxCSP.txt
+
+# will write log information to ./Logs
+# hint: make sure ./Logs file exists!
+
+java -classpath /home/modi/teamcore/code/Adopt adopt.solver.Simulator $1 $2 $3
+

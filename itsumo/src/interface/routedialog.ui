@@ -1,0 +1,347 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>RouteDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>RouteDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>566</width>
+            <height>644</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Network</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QButtonGroup" row="0" column="0">
+            <property name="name">
+                <cstring>buttonGroup1</cstring>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32767</width>
+                    <height>50</height>
+                </size>
+            </property>
+            <property name="title">
+                <string>Type</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QRadioButton" row="0" column="0">
+                    <property name="name">
+                        <cstring>radioRandom</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Regular</string>
+                    </property>
+                </widget>
+                <widget class="QRadioButton" row="0" column="1">
+                    <property name="name">
+                        <cstring>radioDefined</cstring>
+                    </property>
+                    <property name="text">
+                        <string>User defined</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QLayoutWidget" row="3" column="0">
+            <property name="name">
+                <cstring>layout16</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer10</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>341</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonOk</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Ok</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QFrame" row="1" column="0">
+            <property name="name">
+                <cstring>frameNet</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>0</width>
+                    <height>210</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>550</width>
+                    <height>32767</height>
+                </size>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+        </widget>
+        <widget class="QGroupBox" row="2" column="0">
+            <property name="name">
+                <cstring>groupBox4</cstring>
+            </property>
+            <property name="title">
+                <string>Route</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget" row="0" column="0">
+                    <property name="name">
+                        <cstring>layout14</cstring>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1</cstring>
+                            </property>
+                            <property name="paletteForegroundColor">
+                                <color>
+                                    <red>0</red>
+                                    <green>0</green>
+                                    <blue>0</blue>
+                                </color>
+                            </property>
+                            <property name="font">
+                                <font>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>From:</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>comboFrom</cstring>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="1">
+                    <property name="name">
+                        <cstring>layout15</cstring>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel2</cstring>
+                            </property>
+                            <property name="paletteForegroundColor">
+                                <color>
+                                    <red>0</red>
+                                    <green>0</green>
+                                    <blue>0</blue>
+                                </color>
+                            </property>
+                            <property name="font">
+                                <font>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>To:</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>comboTo</cstring>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>layout12</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>addButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Add</string>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer8</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>281</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                    </hbox>
+                </widget>
+                <widget class="QTable" row="2" column="0" rowspan="1" colspan="2">
+                    <column>
+                        <property name="text">
+                            <string>From</string>
+                        </property>
+                    </column>
+                    <column>
+                        <property name="text">
+                            <string>To</string>
+                        </property>
+                    </column>
+                    <property name="name">
+                        <cstring>tableRoute</cstring>
+                    </property>
+                    <property name="numRows">
+                        <number>0</number>
+                    </property>
+                    <property name="numCols">
+                        <number>2</number>
+                    </property>
+                    <property name="selectionMode">
+                        <enum>SingleRow</enum>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget" row="3" column="0" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>layout11</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>removeButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Remove</string>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer9</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>291</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                    </hbox>
+                </widget>
+            </grid>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="1066">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af4000003f1494441545885bd97c18ee34410863fb7db76269911a3650f7060b4125cf6c8891b572edc3921f1167b9ccdc32024b8f1109c38f20a2c2ca319c84c62c7767735876a27761227831451524f7b1c77d7df557f555725400a582003f238a771249c4f02e0e3688106686d545e0053e032ce450fc8b9a4535c0325b004caeee453e08f332a3b255f0277a0a7cfd193f3c32fe03d78076d0bae05f12002211cdec9a490c66173b016520bc64072c081df7c01c04dfcd7f52d8073d036b0aea05a41bd86b6d6f722a8177b92185596e79017703183e2429fb35c418cc8c7c023b0b0a89f0bd013af4bf8ed57f8ebdd4933eec9cb8fe0f5e75b7099658cc62f50ab171d800ca069a05cc1fbdfe1f6f6f63f0398cfe77cf2697487d579248c2e81093d8c29806b60bd424d1dcd1d82fe9110100984002184cdfbbef8161e1fc0464e90e8736222902d9a4d94d9fe06ce415d6ff587002201ef05d77a9ac6d1b682778288ec81a82ab8bf534501e54d5ea8166b15c8ae0c0088531e6c1048c03ba15e3baaaa61f55453550df5dae19ce04506c45c3dc2fd7b4020885a647aa9c42c2660b31300bc6818aa99c14ba06d3c65d9f0e7bb054ded068bd31d9a2789ae735e2329316a95eb0fbb0f4e000811f906800fd4b563f95453d78eafbffa6e7f879ecc26afb8fa0066571a9279013ffe3c67b980d4445e1c03203de5ea7f681ba15c3510f6d2c0be84e1fa10f440e5525d904d4e59202ee8381024e09cd0acdd20324ee2e8d6c751579ad07cbbffedc08941f6d18b17da564653f1de0176948b687e699df2eb3880de1c002120025e641b9a47467f9fd0fbc1bb78a71c0060775f2466870731e9843ec2310ba091d0915dd7ab15ba71d40226d18471f28847100c6ec11ea7c2c88d3ab0406234590c78c0d0afa7c4a4db8cb7c9a661dc020300c6403e81eb97f0f6ed1ceff54a2e976a9dcb8b5747951713b5a031683a8e8a37e47e16801c3e7b0de50d2c17b07880bfeff538b3abe1e224d1d1152536d361ba5b70e7523be902135d30996e37ed482902d3d9ceea641f449a0e7910fabc380520a01bd90826496329eb359114170700ec0289cabaa8910026de848728b41f8649ace9d2b8d14ce378f5a465d6414906d3e6a10391e7d19acfb98c06fb762eb9d052edfb9fe62308c64544afe42c7b0600d9b151e840e47075ad85eaba82a68e15f30156c39690592c54275348b3f182a4eb580e8689e98acb498c924295f7eb86be743c30b12ecc720592da413950a34d8ab76c3b96f1dadf42d695e0c530b60f4aa2792331dbe830c3466f09ac89ad998f8878f3edc886e7978708a2b6e8e94bb45dba419b864ddd7e46a57554fa80b681ff107bc326fe70173f7ca457b79f11408b9a7d1995df01cbbe05001cb0e07fec8eff05ecb12e554ae4733a0000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>buttonOk</sender>
+        <signal>clicked()</signal>
+        <receiver>RouteDialog</receiver>
+        <slot>ok_()</slot>
+    </connection>
+    <connection>
+        <sender>comboFrom</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>RouteDialog</receiver>
+        <slot>fromChanged_(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>addButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RouteDialog</receiver>
+        <slot>add_()</slot>
+    </connection>
+    <connection>
+        <sender>removeButton</sender>
+        <signal>clicked()</signal>
+        <receiver>RouteDialog</receiver>
+        <slot>remove_()</slot>
+    </connection>
+    <connection>
+        <sender>buttonGroup1</sender>
+        <signal>clicked(int)</signal>
+        <receiver>RouteDialog</receiver>
+        <slot>radioClicked_(int)</slot>
+    </connection>
+    <connection>
+        <sender>comboTo</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>RouteDialog</receiver>
+        <slot>toChanged_(const QString&amp;)</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>ok_()</slot>
+    <slot>fromChanged_(const QString&amp; from)</slot>
+    <slot>remove_()</slot>
+    <slot>add_()</slot>
+    <slot>radioClicked_(int pos)</slot>
+    <slot>toChanged_(const QString&amp; to)</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

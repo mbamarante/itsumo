@@ -1,0 +1,20 @@
+
+
+- Nomenclatura dos nodos:
+
+ Os nodos estão nomeados de acordo com "pseudo-colunas" e "pseudo-linhas" (letras para as linhas e números para as colunas).
+ Um sinal de '+' significa que o nodo é um source, e um '-', significa que ele é um sink.
+
+
+- Nomenclatura das ruas:
+ 
+ É feita de modo semelhante aos nodos, uma rua que tenha sentido norte>sul, ou sul>norte, será chamada street "(número da coluna do primeiro nodo)", e uma rua leste>oeste ou oeste>lest, sera chamada street "(letra da linha do primeiro nodo)";
+ Exemplo: A rua formada pelos nodos...  b2+, c2, e2, f2, g2-, será chamada de "street 2".
+   A rua formada pelos nodos...  c1+-, c2, c3, c4, c6, c8+-, será chamada de "street C".
+
+ 
+
+ A Rede possui 3 signalplans:
+ P1: 2 fases de 60 ciclos cada, sendo a primeira aberta para veículos que estão no sentido leste<->oeste.
+ P2: Primeira fase de 30 ciclos e a segunda de 90, sendo a primeira aberta para veículos que estão no sentido leste<->oeste.
+ P3: Primeira fase de 90 ciclos e a segunda de 30, sendo a primeira aberta para veículos que estão no sentido leste<->oeste.

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# usage: startAdopt <algorithm> <problem-type> <input-file>
+# e.g. % startAdopt adopt maxcsp-tree MaxCSP.txt
+
+echo "legal ne?"
+
+java -classpath /home/user/work/algoritmos/adopt/modi_adopt adopt.solver.Simulator $1 $2 $3
+

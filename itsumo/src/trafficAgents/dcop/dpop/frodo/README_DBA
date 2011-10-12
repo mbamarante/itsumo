@@ -1,0 +1,9 @@
+This an introductory document to show how to use the framework for running DBA on the examples, and showing the problems in the GUI.
+
+Running DBA: ./runDBA.sh targets/400/60/targets-0.txt sensors/sensors-400.txt 0 0 1
+
+This executes DBA on the example problem from targets/400/60/targets-0.txt (the target configuration), in the sensor grid specified by sensors/sensors-400.txt
+
+The GUI has a good number of options, please feel free to try them out.
+
+For any questions, comments, please contact me at adrian.petcu@epfl.ch

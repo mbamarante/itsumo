@@ -1,0 +1,15 @@
+#!/bin/bash
+
+arquivos="tempo_rota.png tempo_medio_iteracao.png tempo_medio_rodada.png tempo_rota_rodada.png numero_de_motoristas.png probabilidades.png densidades.png"
+
+numero_diretorios=$#
+
+for i in $arquivos
+do
+  for dir in $*
+  do
+    arqs=${arqs}" $dir/$i"
+  done
+done
+
+montage -tile ${numero_diretorios}x7 -geometry 550x500 $arqs braess-compara.png

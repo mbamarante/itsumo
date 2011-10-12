@@ -1,0 +1,179 @@
+#!/bin/bash
+
+plota() 
+{
+
+case "$1" in
+
+"tempo_rota")
+	_return=$(echo "\
+        $2
+	set ytics 100;
+	set grid;
+	set title \"Tempo de percurso para cada rota\";
+        set key box;
+	set xlabel \"Iteracao\";
+	set ylabel \"Tempo\";
+	plot [][100:] \"$1\" using 1:2 title \"OPD\" with points pointtype 7 pointsize 1,\
+    	     	          \"$1\" using 1:3 title \"OQD\" with points pointtype 7 pointsize 1,\
+		          \"$1\" using 1:4 title \"OQPD\" with points pointtype 7 pointsize 1;")
+	;;
+
+
+"tempo_medio_iteracao")
+	_return=$(echo "\
+        $2
+	set grid;
+	set title \"Tempo de percurso independente de rota, por iteracao\";
+        set key box;
+	set xlabel \"Iteracao\";
+	set ylabel \"Tempo\";
+	plot [][100:] \"$1\" using 1:2 title \"Tempo medio\" with points;")
+# 	plot [][100:2300] \"$1\" using 1:2 smooth csplines title \"Tempo medio\" lw 4;")
+
+	;;
+
+
+"tempo_medio_rodada")
+	_return=$(echo "\
+        $2
+	set grid;
+	set title \"Tempo de percurso independente de rota, por rodada\";
+        set key box;
+	set xlabel \"Rodada\";
+	set ylabel \"Tempo\";
+ 	plot [][100:] \"$1\" using 1:2 smooth csplines title \"Tempo medio\" lw 4;")
+#	plot [][100:2300] \"$1\" using 1:2 title \"Tempo medio\" with points;")
+
+
+	;;
+
+
+
+"tempo_rota_rodada")
+	_return=$(echo "\
+        $2
+	set ytics 100;
+	set grid;
+	set title \"Tempo de percurso para cada rota, por rodada\";
+        set key box;
+	set xlabel \"Rodada\";
+	set ylabel \"Tempo\";
+	plot [][500:] \"$1\" using 1:2 smooth csplines title \"OPD\" lw 4,\
+	     	      \"$1\" using 1:3 smooth csplines title \"OQD\" lw 4,\
+		      \"$1\" using 1:4 smooth csplines title \"OQPD\" lw 4;")
+# 	plot [][500:] \"$1\" using 1:2 title \"OPD\" with linespoints lw 3 pt 7 ps 3,\
+# 	     	      \"$1\" using 1:3 title \"OQD\" with linespoints lw 3 pt 7 ps 3,\
+# 		      \"$1\" using 1:4 title \"OQPD\" with linespoints lw 3 pt 7 ps 3;")
+
+	;;
+
+
+
+"numero_de_motoristas")
+	_return=$(echo "\
+        $2
+	set ytics 30;
+	set grid;
+	set title \"Numero de motoristas em cada rota\";
+        set key box;
+	set xlabel \"Iteracao\";
+	set ylabel \"Numero de motoristas\";
+ 	plot [][:1500] \"$1\" using 1:2 title \"OPD\" with linespoints lw 3 pt 7 ps 3,\
+ 	     	         \"$1\" using 1:3 title \"OQD\" with linespoints lw 3 pt 7 ps 3,\
+ 		         \"$1\" using 1:4 title \"OQPD\" with linespoints lw 3 pt 7 ps 3;")
+#        plot [][300:1200] \"$1\" using 1:2 smooth csplines title \"OPD\" lw 3,\
+#                         \"$1\" using 1:3 smooth csplines title \"OQD\" lw 3,\
+#                         \"$1\" using 1:4 smooth csplines title \"OQPD\" lw 3;")
+
+	;;
+
+
+"probabilidades")
+	_return=$(echo "\
+        $2
+	set grid;
+	set title \"Probabilidade de escolha da rota OQPD\";
+        set key box;
+	set xlabel \"Iteracao\";
+	set ylabel \"Probabilidade\";
+        plot [][] \"$1\" using 1:2 title \"Prob. OQPD\" with points pt 13;")
+# 	plot [][] \"$1\" using 1:2 smooth csplines title \"OQPD\" lw 4;")
+
+	;;
+
+
+"densidades")
+        _return=$(echo "\
+        $2
+	set grid;
+	set title \"Densidade de veiculos em cada trecho\";
+        set key box;
+	set xlabel \"Iteracao\";
+	set ylabel \"Densidade\";
+        plot \"$1\" using 3 smooth csplines title \"OP\" lw 3,\
+             \"$1\" using 4 smooth csplines title \"OQ\" lw 3,\
+             \"$1\" using 5 smooth csplines title \"PD\" lw 3,\
+             \"$1\" using 6 smooth csplines title \"QD\" lw 3,\
+             \"$1\" using 7 smooth csplines title \"QP\" lw 3;")
+#         plot \"$1\" using 3 title \"OP\" with lines,\
+#              \"$1\" using 4 title \"OQ\" with lines,\
+#              \"$1\" using 5 title \"PD\" with lines,\
+#              \"$1\" using 6 title \"QD\" with points,\
+#              \"$1\" using 7 title \"QP\" with linespoints 1;")
+
+
+	;;
+
+
+*)
+	echo "Arquivo nao reconhecido!"
+	exit 1
+
+esac
+
+}
+
+
+arquivos="tempo_rota tempo_medio_iteracao tempo_medio_rodada tempo_rota_rodada numero_de_motoristas probabilidades densidades"
+
+
+case $# in
+
+0)
+    for i in $arquivos
+    do  
+      plota $i ""
+      echo $_return | gnuplot -persist
+    done
+
+    ;;
+
+1)
+    if [ $1 == "save" ]
+    then
+	for i in $arquivos
+        do  
+	  plota $i "set terminal png; set output '$i.png'; " # set terminal postscript eps color;"
+	  echo $_return | gnuplot
+	done
+        arqs=$(for i in $arquivos; do echo ${i}.png; done)
+        montage -tile 2x6 -geometry 550x500 $arqs braess-simul.png
+	#rm $arqs
+    else	
+	plota $1 ""
+	echo $_return | gnuplot -persist
+    fi
+
+    ;;
+	
+2)
+    plota $2 "set terminal png; set output '$2.png'; "
+    echo $_return | gnuplot
+
+    ;;
+
+*)
+    echo "Muitos parametros!"
+    exit 1
+esac

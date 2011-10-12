@@ -1,0 +1,103 @@
+\begin{thebibliography}{10}
+
+\bibitem{dechter97bucket}
+Rina Dechter.
+\newblock Bucket elimination: A unifying framework for processing hard and soft
+  constraints.
+\newblock {\em Constraints: An International Journal}, 7(2):51--55, 1997.
+
+\bibitem{Dechter2003}
+Rina Dechter.
+\newblock {\em Constraint Processing}.
+\newblock Morgan Kaufmann, 2003.
+
+\bibitem{kirkpatrick83optimization}
+S.~Kirkpatrick, C.~D. Gelatt, and M.~P. Vecchi.
+\newblock Optimization by simulated annealing.
+\newblock {\em Science, Number 4598, 13 May 1983}, 220, 4598:671--680, 1983.
+
+\bibitem{Mailler355}
+Roger Mailler and Victor Lesser.
+\newblock Solving distributed constraint optimization problems using
+  cooperative mediation.
+\newblock {\em Proceedings of Third International Joint Conference on
+  Autonomous Agents and MultiAgent Systems (AAMAS 2004)}, 2004.
+
+\bibitem{Modi03}
+P.~J. Modi, W.~M. Shen, and M.~Tambe.
+\newblock An asynchronous complete method for distributed constraint
+  optimization.
+\newblock In {\em Proc. AAMAS}, 2003.
+
+\bibitem{Petcu05FRODO}
+Adrian Petcu.
+\newblock {FRODO: a FRamework for Open/Distributed Optimization}.
+\newblock http://liawww.epfl.ch/frodo/, Jan 2005.
+
+\bibitem{Petcu2005c}
+Adrian Petcu and Boi Faltings.
+\newblock Approximations in distributed optimization.
+\newblock In {\em CP05 - workshop on Distributed and Speculative Constraint
+  Processing, DSCP}, October 2005.
+
+\bibitem{Petcu2005b}
+Adrian Petcu and Boi Faltings.
+\newblock An efficient constraint optimization method for large multiagent
+  systems.
+\newblock In {\em AAMAS05 - LSMAS workshop}, July 2005.
+
+\bibitem{Petcu2005e}
+Adrian Petcu and Boi Faltings.
+\newblock Incentive compatible multiagent constraint optimization.
+\newblock In {\em WINE'05: Workshop on Internet and Network Economics}, Hong
+  Kong, Dec 2005.
+
+\bibitem{Petcu2005d}
+Adrian Petcu and Boi Faltings.
+\newblock Optimal solution stability in continuous time optimization.
+\newblock In {\em IJCAI05 - Distributed Constraint Reasoning workshop, DCR05},
+  August 2005.
+
+\bibitem{Petcu2005}
+Adrian Petcu and Boi Faltings.
+\newblock A scalable method for multiagent constraint optimization.
+\newblock In {\em Proceedings of the 19th International Joint Conference on
+  Artificial Intelligence, IJCAI-05}, Edinburgh, Scotland, Aug 2005.
+
+\bibitem{Petcu2005a}
+Adrian Petcu and Boi Faltings.
+\newblock Superstabilizing, fault-containing multiagent combinatorial
+  optimization.
+\newblock In {\em Proceedings of the National Conference on Artificial
+  Intelligence, AAAI-05}, Pittsburgh, USA, July 2005.
+
+\bibitem{Petcu2005f}
+Adrian Petcu and Boi Faltings.
+\newblock Distributed generator maintenance scheduling.
+\newblock In {\em Proceedings of the First International ICSC Symposium on
+  ARTIFICIAL INTELLIGENCE IN ENERGY SYSTEMS AND POWER: AIESP'06}, Madeira,
+  Portugal, Feb 2006.
+
+\bibitem{yokoo92distributed}
+Makoto Yokoo, Edmund~H. Durfee, Toru Ishida, and Kazuhiro Kuwabara.
+\newblock Distributed constraint satisfaction for formalizing distributed
+  problem solving.
+\newblock In {\em International Conference on Distributed Computing Systems},
+  pages 614--621, 1992.
+
+\bibitem{yokoo95distributed}
+Makoto Yokoo and Katsutoshi Hirayama.
+\newblock Distributed breakout algorithm for solving distributed constraint
+  satisfaction problems.
+\newblock In Victor Lesser, editor, {\em Proceedings of the First International
+  Conference on Multi--Agent Systems}. MIT Press, 1995.
+
+\bibitem{zhang03dbarelax}
+Weixiong Zhang and Lars Wittenburg.
+\newblock Distributed breakout algorithm for distributed constraint
+  optimization problems - {DBArelax}.
+\newblock In {\em Proceedings of the International Joint Conference on
+  Autonomous Agents and Multi Agent Systems (AAMAS-03)}, Melbourne, Australia,
+  2003.
+
+\end{thebibliography}

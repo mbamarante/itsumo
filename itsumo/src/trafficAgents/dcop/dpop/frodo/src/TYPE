@@ -1,0 +1,119 @@
+communication/Message.java: * To change this generated comment edit the template variable "typecomment": Window>Preferences>Java>Templates. To enable and disable the creation of
+communication/Message.java: * type comments go to Window>Preferences>Java>Code Generation.
+communication/Message.java:	private int type;
+communication/Message.java:	public Message(String s, int type, int snd, int dest) {
+communication/Message.java:		this(s, 0, type, snd, dest, 0);
+communication/Message.java:	public Message(String s, long id, int type, int snd, int dest, long time) {
+communication/Message.java:		this.type = type;
+communication/Message.java:	 public Message(String s, int type) {
+communication/Message.java:	 this(s, type, -1, -1);
+communication/Message.java:		return messageId + "\t" + timestamp + "\t" + type + "\t[" + senderId + "->" + destinationId + "]\t" + payload.toString();
+communication/Message.java:		//		return "<" + type + ">\t" + "[" + senderId + "->" + destinationId + "]\t" + payload;
+communication/Message.java:	 * Returns the type.
+communication/Message.java:	 * @uml.property name="type"
+communication/Message.java:		return type;
+communication/Message.java:	 * Sets the type.
+communication/Message.java:	 * @param type
+communication/Message.java:	 *            The type to set
+communication/Message.java:	 * @uml.property name="type"
+communication/Message.java:	public void setType(int type) {
+communication/Message.java:		this.type = type;
+communication/Message.java:		Message myClone = new Message(new String(payload), messageId, type, senderId, destinationId, timestamp);
+communication/CommunicationStatistics.java:	public int getStatistics(int sender, int type) {
+communication/CommunicationStatistics.java:		return stats[sender][type];
+communication/MessageDispatcher.java:				theMQ.addMessage(msg); //deliver the message in the corresponding queue, according to its type
+communication/DistributedAgentInterface.java: * TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
+communication/DistributedAgentInterface.java:	 * Method getMessageQueue. returns the message queue responsible for that particular type of message (no)
+COP/InequalityConstraint.java: * TODO To change the template for this generated type comment go to
+COP/EqualityConstraint.java: * TODO To change the template for this generated type comment go to
+COP/Solution.java: * TODO To change the template for this generated type comment go to
+COP/OCOPProblemFactory.java:				System.out.println("Gonna make nodes of type " + nodeType.getClass().getCanonicalName());
+COP/OCOPProblemFactory.java:	 * @param nodeType this gives the type of the nodes to create from the centralized problem. If null, then the type in the source problem is used.
+COP/OCOPProblemFactory.java:	 * @param nodeType this gives the type of the nodes to create from the centralized problem. If null, then the type in the source problem is used.
+COP/ValuedConstraint.java: * To change the template for this generated type comment go to Window>Preferences>Java>Code Generation>Code and Comments
+COP/ValuedConstraint.java:			char type;
+COP/ValuedConstraint.java:			type = ids[1].charAt(0);
+COP/ValuedConstraint.java:				if (type == '$') {
+COP/ValuedConstraint.java:			vc.setType(type);
+CSP/ComplexValue.java: * To change this generated comment edit the template variable "typecomment":
+CSP/ComplexValue.java: * To enable and disable the creation of type comments go to
+CSP/CSPAgentInterface.java: * To change this generated comment edit the template variable "typecomment": Window>Preferences>Java>Templates. To enable and disable the creation of
+CSP/CSPAgentInterface.java: * type comments go to Window>Preferences>Java>Code Generation.
+CSP/CSPNodeInterface.java: * To change this generated comment edit the template variable "typecomment": Window>Preferences>Java>Templates. To enable and disable the creation of
+CSP/CSPNodeInterface.java: * type comments go to Window>Preferences>Java>Code Generation.
+CSP/BinaryConstraint.java:	char type;
+CSP/BinaryConstraint.java:	 * Returns the type of the BinaryConstraint.
+CSP/BinaryConstraint.java:	 * @return the type of the <code>BinaryConstraint</code>.
+CSP/BinaryConstraint.java:	 * @uml.property name="type"
+CSP/BinaryConstraint.java:		return type;
+CSP/BinaryConstraint.java:	public void setType(char type) {
+CSP/BinaryConstraint.java:		this.type = type;
+CSP/BC_ID_Different.java:	private static char type = '#';
+CSP/BC_ID_Different.java:		return type;
+CSP/Solution.java: * TODO To change the template for this generated type comment go to
+CSP/BC_ID_Equal.java:	private static char type = '=';
+CSP/BC_ID_Equal.java:		return type;
+dbreakout/CSP/BC_ID_DifferentWithWeight.java: * TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
+dbreakout/CSP/CSPNodeDB.java: * To change this generated comment edit the template variable "typecomment": Window>Preferences>Java>Templates. To enable and disable the creation of
+dbreakout/CSP/CSPNodeDB.java: * type comments go to Window>Preferences>Java>Code Generation.
+interaction/meeting/graph/PseudoTreeViewer.java:	 * @param edges array of type DefaultEdge
+interaction/meeting/graph/PseudoTreeEditor.java:	 * This method determines the type of the edge and connects
+interaction/meeting/graph/PseudoTreeEditor.java:	 * @param edges array of type DefaultEdge
+interaction/meeting/graph/PseudoTreeEditor.java:			int type = event.getType();
+interaction/meeting/graph/PseudoTreeEditor.java:			if (type == OCOPSelectionEvent.NEW_SELECTION_MEETING || type == OCOPSelectionEvent.NEW_SELECTION_PARTICIPANT) {
+interaction/meeting/graph/PseudoTreeEditor.java:					if (type == OCOPSelectionEvent.NEW_SELECTION_MEETING) {
+interaction/meeting/graph/PseudoTreeEditor.java:					} else if (type == OCOPSelectionEvent.NEW_SELECTION_PARTICIPANT) {
+interaction/meeting/graph/PseudoTreeEditor.java:			} else if (type == OCOPSelectionEvent.SELECTION_CLEARED) {
+interaction/meeting/roundtrip/DPOPMaker.java:	public void addOCOPModelListener(OCOPModelListener listener, int type) {
+MeetingScheduling/Meeting.java: * TODO To change the template for this generated type comment go to
+monitoring/interfaces/OCOPSelectionEvent.java:	int type;
+monitoring/interfaces/OCOPSelectionEvent.java:	public OCOPSelectionEvent(int type, int[] ids) {
+monitoring/interfaces/OCOPSelectionEvent.java:		this.type = type;
+monitoring/interfaces/OCOPSelectionEvent.java:		return type;
+monitoring/interfaces/OCOPSelectionEvent.java:	public void setType(int type) {
+monitoring/interfaces/OCOPSelectionEvent.java:		this.type = type;
+monitoring/interfaces/OCOPModelEvent.java:	int type;
+monitoring/interfaces/OCOPModelEvent.java:	public OCOPModelEvent(int type, OCOPBasicProblem problem) {
+monitoring/interfaces/OCOPModelEvent.java:		this.type = type;
+monitoring/interfaces/OCOPModelEvent.java:		return type;
+monitoring/interfaces/OCOPModelEvent.java:	public void setType(int type) {
+monitoring/interfaces/OCOPModelEvent.java:		this.type = type;
+monitoring/Monitor.java:	 * Processes the next message. Messages are aggregated by their type (topo,
+monitoring/Monitor.java:			int type = nextMessage.getType();
+monitoring/Monitor.java:			switch (type) {
+OCOP/SelfInterestedAgent.java: * TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
+OCOP/DPOP/graphics/OCOPViewer.java:	 * @param edges array of type DefaultEdge
+OCOP/DPOP/DPOPAgent.java:			logger.println("Loaded node type=" + node.getClass().getCanonicalName());
+OCOP/DPOP/sensors/SensorEnvironment.java: * TODO To change the template for this generated type comment go to
+OCOP/DPOP/DPOPNode.java: * To change this generated comment edit the template variable "typecomment": Window>Preferences>Java>Templates. To enable and disable the creation of
+OCOP/DPOP/DPOPNode.java: * type comments go to Window>Preferences>Java>Code Generation.
+OCOP/DPOP/Dimension.java: * TODO To change the template for this generated type comment go to
+OCOP/OCOPAbstractNode.java: * To change this generated comment edit the template variable "typecomment": Window>Preferences>Java>Templates. To enable and disable the creation of
+OCOP/OCOPAbstractNode.java: * type comments go to Window>Preferences>Java>Code Generation.
+OCOP/OCOPAbstractNode.java:	 * Return number of neighbors connected by a specific type constraint.
+OCOP/OCOPAbstractNode.java:	public int getNumberOfNeighboursByConstraintType(char type) {
+OCOP/OCOPAbstractNode.java:			if (bc != null && bc.getType() == type) {
+OCOP/OCOPProblemInterface.java: * TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates
+OCOP/graph/NeighborGroup.java: * TODO To change the template for this generated type comment go to
+OCOP/graph/DFSData.java: *  A node that extends the DFS-node type will have a data structure like this.
+OCOP/graph/GeorgesHeuristics.java:	private static void getGraphWidthByConstraintTypeDFSMCN(OCOPAbstractProblem problem, int rootId, char type) {
+OCOP/graph/GeorgesHeuristics.java:		System.out.println("Getting graph width for recursive DFS CLIQUE(" + type + ") MCN from root=" + rootId);
+OCOP/graph/GeorgesHeuristics.java:			sortNeighborsByConstraintTypeMCN((problem.getNodeByIndex(i)), type);
+OCOP/graph/GeorgesHeuristics.java:	public static void getMinimumGraphWidthByConstraintType(OCOPAbstractProblem problem, char type) {
+OCOP/graph/GeorgesHeuristics.java:			int wi = nd.getNumberOfNeighboursByConstraintType(type);
+OCOP/graph/GeorgesHeuristics.java:			System.out.println("No connections of type specified: node X" + idmaxcon + " (default) with " + maxcon + " neighbors.");
+OCOP/graph/GeorgesHeuristics.java:		getGraphWidthByConstraintTypeDFSMCN(problem, idmaxcon, type);
+OCOP/graph/GeorgesHeuristics.java:	 * a constraint of a certain type (in the order of connectivity).
+OCOP/graph/GeorgesHeuristics.java:	public static void sortNeighborsByConstraintTypeMCN(OCOPAbstractNode node, char type) {
+OCOP/graph/GeorgesHeuristics.java:			if (bc != null && bc.getType() == type) {
+OCOP/OCOPBasicProblem.java: * To change the template for this generated type comment go to Window>Preferences>Java>Code Generation>Code and Comments
+OCOP/OCOPAgentInterface.java: * To change this generated comment edit the template variable "typecomment":
+OCOP/OCOPAgentInterface.java: * To enable and disable the creation of type comments go to
+OCOP/OCOPAbstractProblem.java: * @author apetcu To change the template for this generated type comment go to Window>Preferences>Java>Code Generation>Code and Comments
+OCOP/communication/Dispatcher.java: * TODO To change the template for this generated type comment go to
+OCOP/communication/Environment.java:	 * @param id - I will setup this agent as the ROOT of the DFS. Its node has to be of type DFSNode!!!
+OCOP/communication/Router.java: * TODO To change the template for this generated type comment go to
+testing/TestStuff.java:		//		//			type element = (type) iter.next();
+testing/TestCase1.java:				AVERAGE); // type of aggregation of data 
+unused/SetUtils.java: * TODO To change the template for this generated type comment go to
+unused/UTILVector.java: * TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

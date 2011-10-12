@@ -1,0 +1,14 @@
+
+// after it was inserted force a decision taking processes to work right on the next node approach.
+// needed to work no teh very next node approach.
+// if it wont to "live" shot it in the head :-)
+// if it *NOT* choosen a random laneset
+
+// if message from is equal fromSender, i. e., wanted from...
+// check if can have a Car crach because the Lane change
+// remove any "attraction" of left Lane, it is not secure
+// Here is an unbalanced decision, right->left change has higher priority over right->left
+// ignored due to much unnecessary data (mantra do extfw)
+// if speed is less or equal 0 than the car is jammed
+// search for congetioned vehicles
+

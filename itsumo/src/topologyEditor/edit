@@ -1,0 +1,90 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import sys
+import os
+from main_window import *
+from parse_xml import *
+from utils import *
+
+try:
+     from qt import * # pyqt?
+except:
+     print "You need to install PyQT!" \
+           "You can get it at http://www.riverbankcomputing.co.uk/pyqt/"
+     sys.exit( -1 )
+
+import pprint
+pretty_printer = pprint.PrettyPrinter()
+
+
+
+def main():
+     
+     app = QApplication(sys.argv)
+     f = editor()
+
+     f.default_caption = "ITSUMO network editor  "
+
+
+     if len(sys.argv) > 1:
+          file_to_load = sys.argv[1]
+          if os.path.isfile(file_to_load):
+               print "Loading", file_to_load, "..."
+               # reads the network from the xml and returns a tree
+               (f.flat_tree, f.tree) = load_xml(file_to_load)
+               f.current_file = file_to_load
+          else:
+               qt.QMessageBox.critical(f,
+                                       "File not found", "File '%s' could not be found" % (file_to_load),
+                                       qt.QMessageBox.Ok)
+     else:
+          # reads the network from the xml and returns a tree
+          (f.flat_tree, f.tree) = load_xml('empty.xml')
+          f.current_file = 'empty.xml'
+
+
+
+     # updates the form caption
+     f.setCaption(f.default_caption + "[" + f.current_file + "]")
+     
+     f.saving_dialog_open = 0
+   
+     
+
+     # complements the tree with additional info (ie: the possible nodes for start/end of each laneset,
+     # the possible target/source lanesets for each source, etc)
+     f.tree = complement_tree(f.tree, f.flat_tree)
+
+#      import pprint
+#      pretty_printer = pprint.PrettyPrinter()
+#      pretty_printer.pprint(f.tree)
+
+     f.create_popups()
+
+     # build the QT ListView using the tree
+     f.build_QT_tree(f, f.tree)
+
+     f.QT_tree.setSelected(f.QT_tree.firstChild(), 1)
+     selected_item = f.QT_tree.selectedItem()
+     f.QT_tree.setOpen(selected_item, 1)
+     f.QT_tree.ensureItemVisible(selected_item)
+
+
+     app.connect( f.fileExitAction, SIGNAL("activated()"), app.quit );
+
+     # start!
+     f.showMaximized()
+
+     app.setMainWidget(f)
+     app.exec_loop()
+
+
+
+
+if __name__ == "__main__":
+#      import profile
+#      profile.run('main()')
+     main()
+     
+
+

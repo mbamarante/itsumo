@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+  <title>FRODO: a Framework for Open/Distributed Optimization</title>
+  <meta name="description"
+ content="FRODO: a Framework for Open/Distributed Optimization">
+  <meta name="keywords"
+ content="Dynamic,Distributed,Optimization,Planning,Scheduling">
+  <meta name="resource-type" content="document">
+  <meta name="distribution" content="global">
+  <meta name="Generator" content="LaTeX2HTML v2002-2-1">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="STYLESHEET" href="apetcu-wipis05.css">
+  <meta content="Adrian Petcu" name="author">
+</head>
+<body>
+<!--Navigation Panel-->
+<h1 align="center">FRODO: a <big>FR</big>amework for <big>O</big>pen/<big>D</big>istributed
+<big>O</big>ptimization
+<br>
+</h1>
+<div>
+<p align="center"><strong>Adrian Petcu</strong></p>
+<p align="center"><i> adrian.petcu@epfl.ch, <big><a
+ href="http://liawww.epfl.ch/People/apetcu/"><tt>http://liawww.epfl.ch/People/apetcu/</tt></a></big></i></p>
+<div style="text-align: center;"><a href="/"> Artificial Intelligence
+Laboratory</a></div>
+</div>
+<h3><a href="apetcu-frodo.pdf">Documentation</a> in pdf format<br>
+</h3>
+<h3><a href="sendmail.html">Sources, java docs and examples</a><br>
+</h3>
+<h3>Abstract:</h3>
+<div>
+<p>Constraint satisfaction/optimization is a powerful paradigm for
+solving numerous tasks in distributed AI, including planning and
+scheduling.
+However, up to now, distributed algorithms for constraint reasoning
+(especially optimization) have not been applied to large-scale systems
+due to their prohibitive complexity in terms of number of messages
+being exchanged.
+</p>
+Here we present a framework for distributed combinatorial optimization.
+The framework is implemented in Java, and simulates a multiagent
+environment in a single Java virtual machine. The framework is highly
+customizable, allowing the user to implement and experiment with any
+distributed optimization algorithm.<br>
+<p>Each agent in the environment is executed asynchronously in a
+separate execution thread, and communicates with its peers through
+message exchange.<br>
+Support for synchronous/asynchronous message passing, monitoring and
+statistics, as well as problem visualization tools are provided.<br>
+</p>
+<p>We have developed a series of new techniques for distributed
+constraint optimization, based on <i>dynamic programming</i>.
+These approaches require a <i>linear number of messages</i>, whose
+maximal size depends on a parameter of the problem graph, called the <i>induced
+width</i>.
+Thus, these methods are likely to work very well on large but loose
+problems.
+</p>
+<p>A number of distributed algorithms are already implemented in this
+framework, like the Distributed Breakout Algorithm and the DPOP
+Algorithm.<br>
+<br>
+A number of random evaluation problems are also provided, from two
+distinct domains: meeting scheduling and resource allocation in a
+sensor network.<br>
+</p>
+</div>
+<p>
+</p>
+<h1><a name="SECTION00010000000000000000">Framework structure</a></h1>
+<a href="DPOPframework.jpg"><img alt="Framework structurual overview"
+ src="DPOPframework.jpg"
+ style="border: 0px solid ; height: 571px; width: 800px;"></a>
+<h1><a name="SECTION00010000000000000000"></a></h1>
+<h1><a name="SECTION00010000000000000000">Distributed optimization</a>
+</h1>
+Distributed optimization problems are problems where each variable and
+constraint is owned by an agent.
+This formalism has been developed in response to the need of solving
+problems which are naturally distributed.
+Traditionally, such problems were gathered into a single place, and a
+centralized algorithm was applied in order to find a solution.
+However, distributed optimization has a number of practical advantages
+over its centralized counterpart.
+Centralized solving may be infeasible due to privacy and data
+integration problems.
+Dynamic systems are another reason: by the time we manage to centralize
+the problem, it has already changed.
+<p>We have developed a new technique for distributed constraint
+optimization, based on <i>dynamic programming</i> - DPOP [<a
+ href="apetcu-wipis05.html#Petcu2005">Petcu &amp; Faltings2005c</a>].
+Our approach is a utility propagation method, and works on arbitrary
+topologies using a pseudotree arrangement of the problem graph.
+It requires a <i>linear number of messages</i>, whose maximal size
+depends on the <i>induced width</i> along the particular pseudotree
+chosen.
+Thus, our method is likely to work very well on large but loose
+problems.
+</p>
+<h2><a name="SECTION00011000000000000000">DPOP extensions</a>
+</h2>
+<p>
+</p>
+<h3><a name="SECTION00011100000000000000">Self-stabilization and fault
+containment</a>
+</h3>
+<p>
+Self stabilization in distributed systems [<a
+ href="apetcu-wipis05.html#Dijkstra1974SSS">Dijkstra1974</a>,<a
+ href="apetcu-wipis05.html#dolev00selfstab">Dolev2000</a>] is the
+ability of a system to always reach a <i>legal</i> state, and maintain
+it afterwards.
+This makes such systems particularly interesting because they can
+tolerate faults, and are able to cope with dynamic environments.
+</p>
+<p>We have proposed in [<a href="apetcu-wipis05.html#Petcu2005a">Petcu
+&amp; Faltings2005d</a>] an extension of DPOP, the first <i>self-stabilizing</i>
+mechanism for distributed combinatorial optimization.
+This technique always stabilizes in a state corresponding to the
+optimal solution of the optimization problem, even upon faults or
+dynamic changes to the problem.
+</p>
+<p>A <i>super-stabilizing</i> extension of this technique can
+guarantee consistent updates to the variable assignments, even while
+transiting from one stable state to the next (until the new optimal
+solution is found, the last-known-good state is preserved).
+</p>
+<p>Furthermore, we described a general scheme for <i>fault containment</i>
+and fast response time upon low impact failures/changes.
+Multiple, isolated failures/changes are handled effectively, without
+solving the problem from scratch.
+</p>
+<h3><a name="SECTION00011200000000000000">Continuous-time optimization</a>
+</h3>
+In [<a href="apetcu-wipis05.html#Petcu2005d">Petcu &amp; Faltings2005b</a>]
+we define the <i>distributed continuous-time optimization problem</i>.
+This formalism allows for a continuous optimization process in the
+sense that one can specify <i>commitment</i> deadlines for the
+decision variables in the problem, and the <i>costs</i> of changing an
+already assigned variable are also captured.
+This formalism can be particularly useful for distributed planning or
+scheduling with user specified deadlines.
+<h3><a name="SECTION00011300000000000000">Approximations and anytime
+optimization</a>
+</h3>
+In [<a href="apetcu-wipis05.html#Petcu2005cTR">Petcu &amp; Faltings2005a</a>]
+we present an approximate version of <i>DPOP</i>.
+This method overcomes the message size shortcoming of DPOP.
+It is a distributed approximation scheme which trades efficiency for
+computational effort.
+The size of the largest message can be adapted to the desired
+approximation ratio.
+<p>We also present an anytime version of this algorithm, which provides
+increasingly accurate solutions while the propagation is still in
+progress.
+At any one time, this method provides known bounds on solution quality.
+This makes it suitable for very large, distributed problems, where the
+propagation may take too long to complete.
+</p>
+<h1><a name="SECTION00020000000000000000">Experimental evaluation</a>
+</h1>
+<p>
+We experimented with distributed meeting scheduling in an organization
+with a hierarchical structure (a tree with departments as nodes, and a
+set of agents working in each department).
+Random meetings are generated, each with a certain utility for each
+agent.
+The objective is to find the schedule that maximizes the overall
+utility.
+</p>
+<p>We solved problems with up to 200 agents, 101 meetings, 270
+variables, 341 constraints.
+To our knowledge, these are by far the largest optimization problems
+solved with a complete, distributed algorithm.
+Previously, [<a href="apetcu-wipis05.html#Maheswaran04dcop">Maheswaran <em>et
+al.</em>2004</a>] reported on experiments with 33 agents, 12 meetings,
+47 variables, 123 constraints.
+They use a static optimization algorithm, without any of the features
+that we describe here.
+</p>
+<p>To our knowledge, there are no other results on self-stabilizing,
+fault-containing, continuous-time or approximate distributed
+optimization as yet.
+</p>
+<h1><a name="SECTION00030000000000000000">Applications to planning and
+scheduling</a>
+</h1>
+There are obvious examples of applications of our techniques to
+planning and scheduling.
+Settings where privacy is an issue (meeting scheduling, combinatorial
+auctions in multiple markets, etc) lend themselves well to distributed
+optimization methods.
+<p><i>Superstabilization</i> can be vital in some settings: e.g. while
+controlling an industrial process in real-time, random settings applied
+to various installations during the search for the optimal solution can
+be dangerous.
+Generating random schedules/plans while searching for the optimal one
+can be costly.
+</p>
+<p><i>Fault containment</i>: low impact perturbations on a dynamic
+system require just a few messages to reach the new optimal state.
+In the best case, our system can deal with <img src="img1.png"
+ alt="$n$" align="bottom" border="0" height="14" width="14">
+simultaneous perturbations in <img src="img2.png" alt="$O(1)$"
+ align="middle" border="0" height="32" width="37"> time.
+This leads to fast response time in planning/scheduling applications,
+when small perturbations are applied.
+</p>
+<p><i>Continuous optimization</i> as described in [<a
+ href="apetcu-wipis05.html#Petcu2005d">Petcu &amp; Faltings2005b</a>]
+can be used as a framework to deal optimally with a continuous planning
+or scheduling process, in which decisions have to be made under time
+constraints, and then revised as new events unfold.
+</p>
+<p><i>Approximations</i> like [<a
+ href="apetcu-wipis05.html#Petcu2005cTR">Petcu &amp; Faltings2005a</a>]
+can be the only way to deal with large multiagent systems, where
+centralization is not feasible and the required time and space
+resources are not available.
+In such a setting, a configurable anytime algorithm provides
+increasingly good solutions as time goes by, with a predefined maximal
+amount of effort.
+</p>
+<p>We have already studied the behavior of our techniques on
+distributed meeting scheduling problems, and the results are very
+promising.
+Currently, we are investigating their application to more general and
+difficult planning and scheduling problems.
+Certain combinations of the techniques described here can be
+particularly efficient in solving a number of real-world problems.
+We intend to pursue this research avenue and identify such problems and
+settings where these techniques perform well, as well as understanding
+their limitations.
+</p>
+<h2><a name="SECTION00040000000000000000">Bibliography</a>
+</h2>
+<dl compact="compact">
+  <dd> <br>
+  </dd>
+  <dt><a name="Dijkstra1974SSS">Dijkstra1974</a> </dt>
+  <dd>Dijkstra, E.&nbsp;W. <br>
+1974. <br>
+Self stabilizing systems in spite of distributed control. <br>
+    <em>Communication of the ACM</em> 17(11):643-644. </dd>
+  <dt><a name="dolev00selfstab">Dolev2000</a> </dt>
+  <dd>Dolev, S. <br>
+2000. <br>
+    <em>Self-Stabilization</em>. <br>
+MIT Press. </dd>
+  <dt><a name="Maheswaran04dcop">Maheswaran <em>et al.</em>2004</a> </dt>
+  <dd>Maheswaran, R.&nbsp;T.; Tambe, M.; Bowring, E.; Pearce,
+J.&nbsp;P.; and Varakantham, P. <br>
+2004. <br>
+Taking DCOP to the realworld: Efficient complete solutions for
+distributed multi-event scheduling. <br>
+In <em>AAMAS-04</em>. </dd>
+  <dt><a name="Petcu2005cTR">Petcu &amp; Faltings2005a</a> </dt>
+  <dd>Petcu, A., and Faltings, B. <br>
+2005a. <br>
+Approximations in distributed optimization. <br>
+Technical Report 2005018, EPFL, Lausanne,Switzerland. </dd>
+  <dt><a name="Petcu2005d">Petcu &amp; Faltings2005b</a> </dt>
+  <dd>Petcu, A., and Faltings, B. <br>
+2005b. <br>
+Optimal solution stability in continuous time optimization. <br>
+In <em>IJCAI05 - Distributed Constraint Reasoning workshop, DCR05</em>.
+  </dd>
+  <dt><a name="Petcu2005">Petcu &amp; Faltings2005c</a> </dt>
+  <dd>Petcu, A., and Faltings, B. <br>
+2005c. <br>
+A scalable method for multiagent constraint optimization. <br>
+In <em>Proceedings of the 19th International Joint Conference on
+Artificial Intelligence, IJCAI-05</em>. </dd>
+  <dt><a name="Petcu2005a">Petcu &amp; Faltings2005d</a> </dt>
+  <dd>Petcu, A., and Faltings, B. <br>
+2005d. <br>
+Superstabilizing, fault-containing multiagent combinatorial
+optimization. <br>
+In <em>Proceedings of the National Conference on Artificial
+Intelligence, AAAI-05</em>. </dd>
+</dl>
+<p>
+</p>
+<h1><a name="SECTION00050000000000000000">About this document ...</a>
+</h1>
+<strong>Dynamic Distributed Optimization for Planning and Scheduling</strong>
+<p>This document was generated using the
+<a href="http://www.latex2html.org/"><strong>LaTeX</strong>2<tt>HTML</tt></a>
+translator Version 2002-2-1 (1.70)
+</p>
+<p>Copyright &copy; 1993, 1994, 1995, 1996,
+<a href="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</a>,
+Computer Based Learning Unit, University of Leeds.
+<br>
+Copyright &copy; 1997, 1998, 1999,
+<a href="http://www.maths.mq.edu.au/%7Eross/">Ross Moore</a>,
+Mathematics Department, Macquarie University, Sydney.
+</p>
+<p>The command line arguments were: <br>
+<strong>latex2html</strong> <tt>-split +0 apetcu-wipis05.tex</tt>
+</p>
+<p>The translation was initiated by Adrian Petcu on 2005-05-19</p>
+<hr><!--Navigation Panel-->
+<img alt="next_inactive"
+ src="file:/usr/share/latex2html/icons/nx_grp_g.png" align="bottom"
+ border="0" height="24" width="81"> <img alt="up"
+ src="file:/usr/share/latex2html/icons/up_g.png" align="bottom"
+ border="0" height="24" width="26"> <img alt="previous"
+ src="file:/usr/share/latex2html/icons/prev_g.png" align="bottom"
+ border="0" height="24" width="63"> <br>
+<!--End of Navigation Panel-->
+<address>Adrian Petcu
+2005-05-19
+</address>
+</body>
+</html>
