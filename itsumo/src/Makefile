@@ -30,5 +30,5 @@ clean:
 	@make clean -C trafficAgents
 	@make clean -C visual3D
 
-	@rm -f witsumo
+	@rm -f ../witsumo
 	@echo =================

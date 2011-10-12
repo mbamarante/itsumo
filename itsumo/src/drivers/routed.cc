@@ -69,7 +69,7 @@ void RoutedDriver::set_source_destination( Node * source, Node * dest )
 void RoutedDriver::setNetwork(Network * n)
 {
 	graph.Network2Graph(n);
-	graph.gnuplotPrintGraph();
+//	graph.gnuplotPrintGraph();
 }
 
 void RoutedDriver::useLocalInfo(bool use_li)
