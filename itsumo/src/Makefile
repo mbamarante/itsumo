@@ -10,7 +10,7 @@ all:
 	@make -C basic
 	@make -C interface -f Fixmake
 	@make -C trafficAgents
-	@mv interface/witsumo ../bin/
+	@mv interface/witsumo ../
 
 	@make -C visual3D	
 

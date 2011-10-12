@@ -1,7 +1,7 @@
 CC=g++
 W_FLAGS= -Wall
 C_FLAGS= -O2 $(W_FLAGS) -g
-NAME = ../../bin/src/basic/itsumo
+NAME = itsumo
 
 OBJS=itsumo.o utils.o topology.o node.o topologyelement.o \
 lane.o section.o laneset.o  calibrator.o\

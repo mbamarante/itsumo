@@ -5,12 +5,12 @@ DRIVERS = leNet.o	Main.o
 	
 all: $(DRIVERS)
 	@echo geradorPS: OK
-	@$(CC) ../tiny/*.o *.o -o ../../bin/src/geradorPS/geradorPS
+	@$(CC) ../tiny/*.o *.o -o geradorPS
 .cc.o:
 	@echo Compiling $@
 	@$(CC) -c $< $(C_FLAGS) -o $@ 
 
 clean:
 	@rm -f *.o 
-	@rm ../../bin/src/geradorPS/geradorPS
+	@rm geradorPS
 	@echo geradorPS: CLEAN
