@@ -1,0 +1,9 @@
+<agents>
+ <agent>
+  <type>Basic</type>
+  <name>agent_Basic_0</name>
+  <log>on</log>
+  <trafficlights></trafficlights>
+ </agent>
+</agents>
+

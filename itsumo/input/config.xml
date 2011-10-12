@@ -1,0 +1,30 @@
+<config>
+ <file>input/grid6x6_net.xml</file>
+ <steps>3600</steps>
+ <default_deceleration>0</default_deceleration>
+ <sensor_interval>30</sensor_interval>
+ <agent_interval>600</agent_interval>
+ <car_max_speed>3</car_max_speed>
+ <cell_size>5</cell_size>
+ <iteration_length>1</iteration_length>
+ <drivers>
+  <driver>
+   <name>nasch</name>
+   <nick>Standard_0</nick>
+   <number>1</number>
+   <state>ON</state>
+   <debug>OFF</debug>
+   <options></options>
+   <routes></routes>
+  </driver>
+ </drivers>
+ <sensors>
+  <sensor>
+   <name>laneset_sensor</name>
+   <file>../../output/laneset_sensor.txt</file>
+   <state>ON</state>
+   <time_tag>NO</time_tag>
+  </sensor>
+ </sensors>
+</config>
+
