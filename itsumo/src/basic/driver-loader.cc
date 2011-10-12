@@ -140,7 +140,7 @@ DriverLoader::~DriverLoader(){
 	}
 }
 
-void DriverLoader::update(int step, bool reduceOccupationSize, MYSQL *connect, int odsize, string networkname, string round, string global_odfile, string tabela)
+void DriverLoader::update(int step)
 {
 	vector<Driver *>::iterator it;
 	int howManyBack = 0;
@@ -172,59 +172,6 @@ void DriverLoader::update(int step, bool reduceOccupationSize, MYSQL *connect, i
 
 				active_cars_vector_t::iterator car_it;
 				active_cars_vector_t remove_list;
-
-//				cout << "driver: " << driverToRemove->getId();
-//				cout << " travel_time:" << driverToRemove->getStepRemoved() - driverToRemove->getStepInserted() << endl;
-
-				stringstream query;
-//				query << "insert into trvtime (driver_id, trv_time, replanner, global, communication, odsize, network, round, source, destination, simulation) values (";
-//				query << driverToRemove->getId() << "," << (driverToRemove->getStepRemoved() - driverToRemove->getStepInserted());
-//				query << "," << driverToRemove->getReplanner() << "," << driverToRemove->getGlobal() << ",";
-//				query << driverToRemove->getCommunication() << ",";
-//				query << odsize << ",\"" << networkname << "\"" << "," << round << ",";
-//				query << static_cast<RoutedDriver *>(driverToRemove)->getSourceId() << ",";
-//				query << static_cast<RoutedDriver *>(driverToRemove)->getDestionationId() << ",\"";
-//				query << global_odfile << "\"" << ")";
-
-				if (driverToRemove->getNumberOfTrips() == 0) {
-					// start statistics
-					query << "insert into " << tabela << " (driver_id, trvtime, replanner, global, communication, odsize, network, round, source, destination, simulation, distance, num_trips) values (";
-					query << driverToRemove->getId() << "," << (driverToRemove->getStepRemoved() - driverToRemove->getStepInserted());
-					query << "," << driverToRemove->getReplanner() << "," << driverToRemove->getGlobal() << ",";
-					query << driverToRemove->getCommunication() << ",";
-					query << odsize << ",\"" << networkname << "\"" << "," << round << ",";
-					query << static_cast<RoutedDriver *>(driverToRemove)->getSourceId() << ",";
-					query << static_cast<RoutedDriver *>(driverToRemove)->getDestionationId() << ",\"";
-					query << global_odfile << "\",";
-					query << driverToRemove->getDistanceTravelled() << ",1)";
-
-					// reset defaults do restart travelling
-					static_cast<RoutedDriver *>(driverToRemove)->reActivate();
-
-				} else {
-					// update statistics
-					query << "update " << tabela << " set trvtime=trvtime+" << (driverToRemove->getStepRemoved() - driverToRemove->getStepInserted()) << "," <<
-							 "num_trips=num_trips+1," << //driverToRemove->getNumberOfTrips() <<
-							 "distance=" << driverToRemove->getDistanceTravelled() <<
-							 " where " <<
-							 "driver_id=" << driverToRemove->getId() << " and " <<
-							 "replanner=" << driverToRemove->getReplanner() << " and " <<
-							 "global=" << driverToRemove->getGlobal() << " and " <<
-							 "communication=" << driverToRemove->getCommunication() << " and " <<
-							 "odsize=" << odsize << " and " <<
-							 "network=\"" << networkname << "\" and " <<
-							 "round=" << round << " and " <<
-							 "simulation=\"" << global_odfile << "\"";
-
-					// reset defaults do restart travelling
-					static_cast<RoutedDriver *>(driverToRemove)->reActivate();
-				}
-
-				string str(query.str());
-
-//				sqlite3_exec(db, str.c_str(), NULL, 0, &zErrMsg);
-				mysql_query(connect, str.c_str());
-//				sqlite3_free(zErrMsg);
 
 				for (car_it=active_cars.begin(); car_it != active_cars.end(); car_it++) {
 					if ((*car_it)->getDriver() == driverToRemove)

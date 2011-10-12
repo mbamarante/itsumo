@@ -16,7 +16,7 @@ all: $(NAME)
 
 
 $(NAME): $(OBJS)
-	@$(CC) $(C_FLAGS) -o $@ $^ $(EXTRA) -lsqlite3 -I/usr/include/mysql -L/usr/lib/mysql -lmysqlclient
+	@$(CC) $(C_FLAGS) -o $@ $^ $(EXTRA)
 
 
 .cc.o:

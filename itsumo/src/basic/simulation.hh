@@ -92,7 +92,7 @@ class Simulation {
 		float getDeceleration();
 		Simulation(string file);
 		~Simulation();
-		void simulate(string round, string table_name);
+		void simulate();
 		vector<DriverLoader *> * getDriverLoaderList();
 
 		//JB:: implement

@@ -47,18 +47,7 @@ int main ( int argc, char **argv ) {
 
 	cout << "Start Simulation..." << endl;
 
-	string round = "0";
-	string table_name = "";
-
-	if (argc >= 3) {
-		round = argv[2];
-	}
-
-	if (argc >= 4) {
-		table_name = argv[3];
-	}
-
-	s->simulate(round, table_name);
+	s->simulate();
 	delete s;
 }
 

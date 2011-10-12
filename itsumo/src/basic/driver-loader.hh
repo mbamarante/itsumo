@@ -31,10 +31,6 @@
 #include "calibrator.hh"
 #include "network.hh"
 
-#include "sqlite3.h"
-//#include "my_global.h" // Include this file first to avoid problems
-#include "mysql/mysql.h" // MySQL Include File
-
 class DriverLoader {
 	private:
 		Network *n;
@@ -50,7 +46,7 @@ class DriverLoader {
 		string printTravelTimesSensor();
 		string printAvgTravelTimesSensor();
 		DriverLoader(Network *_n,string name, string nick, int num, vector< pair <string,string> > vet, vector< Route > rts, ofstream *driverLogger);
-		void update(int step, bool reduceOccupationSize, MYSQL *connect, int odsize, string networkname, string round, string global_odfile, string tabela);
+		void update(int step);
 		~DriverLoader();
 		bool removeDriver(Driver *,int step);
 		vector <Driver *> getWaitingDrivers() { return waiting;};

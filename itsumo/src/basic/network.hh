@@ -120,7 +120,6 @@ public:
   int generateDCOP(tlight_agents_t agts, dcopparams params);
   copObject getCopNodeInfo(Node *mainNode, int alg);
 
-  void makeMap(MYSQL *connect, int odsize, string networkname, string round, int replan, int comm, int view); // mapa de relevo
   void drawMap(); // desenha o mapa
 
   /*

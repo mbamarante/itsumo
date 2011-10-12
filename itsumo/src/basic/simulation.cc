@@ -34,15 +34,6 @@
 #include "../drivers/routerlibs/geradorOD.hh"
 #include "../drivers/routed.hh"
 
-#include "sqlite3.h"
-//#include "my_global.h" // Include this file first to avoid problems
-#include "mysql/mysql.h" // MySQL Include File
-
-#define SERVER "127.0.0.1"
-#define USER "root"
-#define PASSWORD "root"
-#define DATABASE "itsumo"
-
 dcopparams dcop;
 
 int global_odsize;
@@ -197,7 +188,7 @@ node_vector_t Simulation::stringToNode(string ids, int isdcop) {
 	return ans;
 }
 
-void Simulation::simulate(string round, string table_name) {
+void Simulation::simulate() {
 
 	//	sensorsHeaders(numberOfSteps);
 	int timeoutSeconds = 1; //JB:: Modified for tests; normal value 10 seconds.
@@ -210,12 +201,6 @@ void Simulation::simulate(string round, string table_name) {
 
 	int countCarsDiff = 0;
 	int lastCars = 0;
-
-	MYSQL *connect; // Create a pointer to the MySQL instance
-	connect=mysql_init(NULL); // Initialise the instance
-
-	connect=mysql_real_connect(connect,SERVER,USER,PASSWORD,DATABASE,0,NULL,0);
-	mysql_query(connect, "START TRANSACTION;");
 
 	try {
 		// Create the socket
@@ -397,7 +382,7 @@ void Simulation::simulate(string round, string table_name) {
 				// manage special drivers
 				for (vector<DriverLoader *>::iterator dit = vet_drivers.begin(); dit
 						!= vet_drivers.end(); dit++) {
-					(*dit)->update(currentStep, reduceOccupationSize, connect, global_odsize, global_network, round, global_odfile, table_name);
+					(*dit)->update(currentStep);
 				}
 
 				// updates the driver's decisions
@@ -567,12 +552,6 @@ void Simulation::simulate(string round, string table_name) {
 			vet_drivers.front()->prepareNewRound();
 		} // episode loop end
 	} // round loop end
-
-	n->makeMap(connect, global_odsize, global_network, round, global_replan, global_comm, global_view);
-
-	mysql_query(connect, "COMMIT;");
-    mysql_close(connect);
-
 }
 
 void Simulation::sensorsHeaders(int iterations, int currentEpisode,

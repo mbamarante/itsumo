@@ -53,13 +53,6 @@ RoutedDriver::RoutedDriver(string driver_class_name) : Nasch(driver_class_name)
 	goWait = false;
 	iAmBack = 0;
 	numberOfTrips = 0;
-
-
-	if (getId()==0){
-		cout<<"created"<<endl;
-	}
-
-
 }
 
 void RoutedDriver::set_source_destination( Node * source, Node * dest )

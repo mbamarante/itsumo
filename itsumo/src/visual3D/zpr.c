@@ -89,7 +89,7 @@ void window_to_world(GLint x, GLint y, GLfloat *result)
 
   winX = (float)x;
   winY = (float)viewport[3] - (float)y;
-  glReadPixels( x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ );
+  glReadPixels( x, (int)winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ );
 /*   printf("winz = %f\n", winZ); */
 
   gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
