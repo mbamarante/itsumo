@@ -10,7 +10,7 @@ all:
 	@make -C basic
 	@make -C interface -f Fixmake
 	@make -C trafficAgents
-	@mv interface/witsumo ../bin/
+	@mv interface/witsumo ../
 
 	@make -C visual3D	
 
@@ -30,5 +30,5 @@ clean:
 	@make clean -C trafficAgents
 	@make clean -C visual3D
 
-	@rm -f ../witsumo
+	@rm -f witsumo
 	@echo =================
