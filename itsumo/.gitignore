@@ -2,8 +2,9 @@
 *.txt
 *.log
 bin/output/*
-bin/witsumo
-bin/src/basic/itsumo
-bin/src/visual3D/visual
-bin/src/geradorConfig/*
-bin/src/geradorPS/*
+/src/basic/itsumo
+/src/visual3D/visual
+/src/geradorConfig/geradorConfig
+/src/geradorPS/geradorPS
+/witsumo
+start_agents
