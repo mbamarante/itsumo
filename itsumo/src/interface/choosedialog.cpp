@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Form implementation generated from reading ui file 'choosedialog.ui'
 **
-** Created: Wed Oct 12 13:53:12 2011
+** Created: Wed Oct 12 21:01:29 2011
 **
 ** WARNING! All changes made in this file will be lost!
 ****************************************************************************/
